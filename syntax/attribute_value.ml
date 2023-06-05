@@ -488,7 +488,7 @@ let fill_rule ?separated_by:_ ?default:_ loc _name s =
   begin match s with
   | "nonzero" ->
     Some [%expr `Nonzero]
-  
+
   | "evenodd" ->
     Some [%expr `Evenodd]
 
@@ -575,6 +575,16 @@ let script_type =
          then Some [%expr `Mime [%e Common.string loc s]]
          else Common.error loc {|script type attribute must be "module" or a mime type|}
     [@metaloc loc]
+
+let loading ?separated_by:_ ?default:_ loc name s =
+  match s with
+  | "eager" -> Some [%expr `Eager]
+  | "lazy" -> Some [%expr `Lazy]
+  | tks ->
+    match spaces (string) loc name tks with
+      | Some tks -> Some [%expr `Tokens [%e tks]]
+      | None -> Common.error loc "Bad loading tokens"
+  [@metaloc loc]
 
 (* Special-cased. *)
 

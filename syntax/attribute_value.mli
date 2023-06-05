@@ -150,7 +150,7 @@ val offset : parser
     - [`Percentage n] if [s] has form [(string_of_float n) ^ "%"]. *)
 
 val transform : parser
-(** Parses an SVG transform attribute value. 
+(** Parses an SVG transform attribute value.
 
     @see <https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform>
 *)
@@ -214,6 +214,9 @@ val number_or_datetime : parser
 (** Used for [a_input_min] and [a_input_max]. *)
 
 val script_type : parser
+
+val loading : parser
+(** Used for [a_loading]. *)
 
 (* {2 Special-cased}
 

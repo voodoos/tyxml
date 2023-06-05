@@ -414,6 +414,8 @@ struct
 
   let a_img_sizes = comma_sep_attrib "sizes"
 
+  let a_loading l = user_attrib C.string_of_loading "loading" l
+
   let a_start = int_attrib "start"
 
   let a_step step =
@@ -421,7 +423,7 @@ struct
 
   let a_translate x =
     user_attrib C.string_of_big_variant "translate" x
-  
+
   let a_wrap x =
     user_attrib C.string_of_big_variant "wrap" x
 
@@ -1063,6 +1065,10 @@ struct
   | `Javascript -> "application/javascript"
   | `Module -> "module"
   | `Mime s -> s
+
+  let string_of_loading = function
+  | `Eager -> "eager"
+  | `Lazy -> "lazy"
 
   let string_of_number_or_datetime = function
     | `Number n -> string_of_int n

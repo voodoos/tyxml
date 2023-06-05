@@ -385,6 +385,11 @@ module type T = sig
   val a_img_sizes : text list wrap -> [> | `Img_sizes] attrib
   [@@reflect.attribute "sizes" ["img"]]
 
+  val a_loading : Html_types.loading wrap -> [> | `Loading] attrib
+  [@@reflect.attribute "loading" ["img";"iframe"]]
+  (** @see <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#loading> [loading] indicates how the browser should load the image. *)
+
+
   val a_start : number wrap -> [> | `Start] attrib
 
   val a_step : float_number option wrap -> [> | `Step] attrib
@@ -1256,6 +1261,9 @@ module type Wrapped_functions = sig
 
   val string_of_srcset :
     ([< image_candidate] list, string) Xml.W.ft
+
+  val string_of_loading :
+  (Html_types.loading, string) Xml.W.ft
 
   val string_of_autocomplete :
     (Html_types.autocomplete_option, string) Xml.W.ft

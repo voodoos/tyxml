@@ -1755,6 +1755,7 @@ type iframe_attrib =
     | `Width
     | `Height
     | `Referrerpolicy
+    | `Loading
   ]
 
 type object__content = [ | flow5 | `Param ]
@@ -1797,7 +1798,15 @@ type img = [ `Img ]
 type img_interactive = [ `Img | `Img_interactive ]
 type img_content = notag
 type img_content_fun = notag
-type img_attrib = [ | common | `Height | `Ismap | `Width | `Srcset | `Img_sizes]
+type img_attrib =
+  [ | common
+    | `Height
+    | `Ismap
+    | `Width
+    | `Srcset
+    | `Img_sizes
+    | `Loading
+  ]
 
 (* Attributes used by audio and video. *)
 type media_attrib =
@@ -2431,3 +2440,5 @@ type input_type =
 type script_type = [ `Javascript | `Module | `Mime of string ]
 
 type autocomplete_option = [ `On | `Off | `Tokens of string list]
+
+type loading = [ `Eager | `Lazy ]
